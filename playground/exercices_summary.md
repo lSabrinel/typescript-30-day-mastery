@@ -291,3 +291,8 @@ It’s more flexible than a single primitive type, but much more specific than t
 
 Unions can be written anywhere a type value is defined, including function parameters.
 
+Type Narrowing
+****************
+
+Type narrowing is a TypeScript process that refines a value of multiple types into a single, specific type.
+It is when TypeScript can figure out what type a variable can be at a given point in our code.
