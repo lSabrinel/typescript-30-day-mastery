@@ -252,3 +252,14 @@ let aStringFamily: Family<string> = {
   mate: 'string next door', 
   children: ['stringy', 'stringo', 'stringina', 'stringolio']
 }; 
+
+
+Generic Functions
+*******************
+Generic functions are functions that work with different types while preserving type safety.
+
+Instead of fixing the type in advance, you parameterize the type and let TypeScript infer it when the function is used.
+
+function getFilledArray<T>(value: T, n: number): T[] {
+  return Array(n).fill(value);
+}
