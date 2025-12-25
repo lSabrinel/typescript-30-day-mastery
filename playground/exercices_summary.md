@@ -226,3 +226,13 @@ let aCompany: {
 
 Function Types
 ***************
+
+One of the neat things about TypeScript is that we can precisely control the kinds of functions assignable to a variable. 
+We do this using function types, which specify the argument types and return type of a function.
+
+type StringsToNumberFunction = (arg0: string, arg1: string) => number;
+
+This syntax is just like arrow notation for functions, except instead of the return value we put the return type.
+Function types are most useful when applied to callback functions.
+
+**Note:** A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
