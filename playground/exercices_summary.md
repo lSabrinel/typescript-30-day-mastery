@@ -236,3 +236,19 @@ This syntax is just like arrow notation for functions, except instead of the ret
 Function types are most useful when applied to callback functions.
 
 **Note:** A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
+
+Generic Types
+**************
+TypeScript’s generics are ways to create collections of types (and typed functions, and more) that share certain formal similarities. These collections are parameterized by one or more type variables.
+
+type Family<T> = {
+  parents: [T, T], mate: T, children: T[]
+};
+
+The following assignment will be error free:
+
+let aStringFamily: Family<string> = {
+  parents: ['stern string', 'nice string'],
+  mate: 'string next door', 
+  children: ['stringy', 'stringo', 'stringina', 'stringolio']
+}; 
