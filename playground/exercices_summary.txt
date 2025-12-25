@@ -1,0 +1,228 @@
+
+*******
+Steps
+*******
+npm init -y  -> to create packages.json
+npm install typescript --save-dev -> ti create package-lock.json and and install node modules
+npx tsc --init
+  			---> initialize env
+
+npx tsc index.ts   ---> to create js file form ts. npx .. not just tsc because the tsc is installed locally in the node_modules and pnly npx knows where it is
+node index.js  ---> to execute the script
+
+
+*********************
+intro & type concept
+**********************
+TypeScript is a superset of JavaScript that adds types.
+
+Type inference in TS: is TypeScript's ability to automatically determine and assign types to variables, function return values, and expressions based on their initial value and context, without requiring explicit type annotations.
+
+Type Shapes in TS: refer to the structure of an object, where the type is defined by the properties and methods it contains, not by its specific class or implementation.
+
+Any in TS: There are some places where TypeScript will not try to infer what type something is—generally when a variable is declared without being assigned an initial value.Variables of type any can be assigned to any value and TypeScript won’t give an error if they’re reassigned to a different type later on.
+
+type annotations == type declarations: let mustBeAString : string;
+
+***************
+tsconfig.json
+***************
+"es2017": 2017 version of EcmaScript standards // ECMAScript is a standard for scripting languages, including JavaScript
+"commonjs": syntax to import and export modules.
+"strictNullChecks", variables can only have null or undefined values if they are explicitly assigned those values.
+"include" that determines what files the compiler applies the rules to
+
+
+*****
+FAQ
+*****
+
+Why TypeScript creates .js files instead of running .ts directly
+******************************************************************
+1. Because browsers and Node.js only understand JavaScript: TypeScript is not a language that computers or browsers can run directly/ It’s a superset of JavaScript
+2. TypeScript = Development Tool, JavaScript = Execution Code
+
+
+What is Node.js?
+******************
+Node.js is a runtime environment that lets you run JavaScript outside the browser — for example, on your computer or a server.
+Normally, JavaScript runs inside browsers (like Chrome or Firefox) to make web pages interactive.
+Node.js takes the same JavaScript engine from Chrome (called V8) and runs it on your machine, not in a webpage.
+So, with Node.js, you can do things like:
+
++ read and write files,
++ run backend servers,
++ use JavaScript (or compiled TypeScript) for tools and automation.
+
+*********
+Functions
+**********
+you have to pass arguments in the same order as the aparameters or else the function cannot be executed.
+
+if you add an optional parameter in ts function you write ? after it name.
+parameters with default values don’t need a ? after their name, 
+since assigning a default value already implies that they’re optional parameters.
+
+TypeScript can also infer the types of values returned by 
+functions
+Preview: Docs Loading link description.
+It does this by looking at the types of the values after a function’s return statements
+
+
+Explicit Return Types
+************************
+You can annotate parameters and return values by functions (even in arrow functions).
+
+
+Void Return Type
+*****************
+If the function returns nothing the return type should be Void.
+
+Documenting Functions
+**********************
+TypeScript recognizes JavaScript comment syntax
+
+Comments:
+----------
+// This is a single line comment 
+
+/*
+This is a 
+multiline
+comment
+*/
+
+Documentation comments:
+--------------------------
+/**
+  * Returns the sum of two numbers.
+  *
+  * @param x - The first input number
+  * @param y - The second input number
+  * @returns The sum of `x` and `y` // No return value
+  *
+  */
+
+***************
+Complex Types 
+****************
+
+Array Type Annotations
+*************************
+It could be one of these two:
+
+let names: string[] = ['Danny', 'Samantha'];
+let names: Array<string> = ['Danny', 'Samantha'];
+
+
+Multi-dimensional Arrays
+-----------------------------
+let arr: string[][] = [['str1', 'str2'], ['more', 'strings']];
+let numbersMulti : number[][][] = [ [[1],[2,3]], [[7],AnotherArray] ];
+
+
+Tuples
+*******
+JavaScript arrays are flexible and can have elements of different types. With TypeScript, we can also define arrays with a fixed sequence of types: Tuples.
+
+let ourTuple: [string, number, string, boolean] = ['Is', 7 , 'our favorite number?' , false];
+
+tuples have fixed lengths,
+
+Rest Parameters
+*****************
+The rest parameter syntax allows a function to accept an indefinite number of arguments as an array.
+
+function addPower(p: number, ...numsToAdd: number[]): number{} 
+OR
+function addPower(p,...numsToAdd: number[]): number{}
+NOT SURE ?
+
+Spread Syntax
+****************
+
+an example of an array of tuples: let danceMoves: [string, number, boolean][] = [
+  ['chicken beak', 4, false],
+  ['wing flap', 4, false],
+  ['tail feather shake', 4, false],
+];
+
+*************
+Custom Types
+*************
+
+Enums
+******
+
+Numeric Enums
+---------------
+
+We use enums when we’d like to enumerate all the possible values that a variable could have.
+
+enum Direction {
+  North,
+  South,
+  East,
+  West
+}
+
+enum Direction {
+  North = 7,
+  South,
+  East,
+  West
+}
+
+enum Direction {
+  North = 8,
+  South = 2,
+  East = 6,
+  West = 4
+}
+
+String Enums
+-------------
+With numeric enums, the numbers could be assigned automatically, but with string enums we must write the string explicitly.
+
+enum DirectionNumber { North, South, East, West }
+enum DirectionString { North = 'NORTH', South = 'SOUTH', East = 'EAST', West = 'WEST' }
+
+Object Types
+*************
+
+annotation: let aPerson: {name: string, age: number};
+
+TypeScript places no restrictions on the types of an object’s properties. They can be enums, 
+arrays, and even other object types!
+
+let aCompany: {
+  companyName: string, 
+  boss: {name: string, age: number}, 
+  employees: {name: string, age: number}[], 
+  employeeOfTheMonth: {name: string, age: number},  
+  moneyEarned: number
+};
+
+Type Aliases
+*************
+Type Aliases allow defining types with a custom name (an Alias).
+Type aliases let you give a name to a type in TypeScript.
+
+They are used to:
+- make types easier to read
+- reuse complex types
+- express intent clearly
+
+example:
+
+type Person = { name: string, age: number };
+let aCompany: {
+  companyName: string, 
+  boss: Person, 
+  employees: Person[], 
+  employeeOfTheMonth: Person,  
+  moneyEarned: number
+};
+
+Function Types
+***************

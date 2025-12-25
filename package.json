@@ -1,0 +1,24 @@
+{
+  "name": "typescript-30-day-mastery",
+  "version": "1.0.0",
+  "description": "30-day intensive TypeScript learning and practice program focused on type safety, real-world patterns, and interview-level problem solving. Includes course exercises, guided projects, and progressively more advanced TypeScript challenges.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lSabrinel/typescript-30-day-mastery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/lSabrinel/typescript-30-day-mastery/issues"
+  },
+  "homepage": "https://github.com/lSabrinel/typescript-30-day-mastery#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
