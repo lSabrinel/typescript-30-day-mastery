@@ -263,3 +263,31 @@ Instead of fixing the type in advance, you parameterize the type and let TypeScr
 function getFilledArray<T>(value: T, n: number): T[] {
   return Array(n).fill(value);
 }
+
+
+************
+Union Types
+************
+
+Defining Unions
+*****************
+
+Unions: Docs Some values can have more than one possible type. TypeScript represents these either-or types using a union.
+allow us to define multiple allowed type members by separating each type member with a vertical line character 
+
+let ID: string | number;
+
+// number
+ID = 1;
+
+// or string
+ID = '001';
+
+console.log(`The ID is ${ID}.`);
+
+
+In this example, string | number is a union that allows ID to be a string or a number. 
+It’s more flexible than a single primitive type, but much more specific than the any type.
+
+Unions can be written anywhere a type value is defined, including function parameters.
+
