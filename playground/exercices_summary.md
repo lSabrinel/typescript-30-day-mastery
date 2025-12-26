@@ -340,3 +340,76 @@ Example: type Color = 'green' | 'yellow' | 'red';
 function changeLight(color: Color) {
   // ...
 }
+
+
+**************
+Type Narrowing
+***************
+
+Intro
+******
+
+When compiling TypeScript code to JavaScript, the compiler will throw any errors related to variable types. This process of compilation involves giving the TypeScript compiler the information it needs to perform type checks. Therefore, when we give our 
+variables
+Preview: Docs In TypeScript, besides being typed, variables are expected to follow the same rules and guidelines that they do with JavaScript.
+specific types, these types are reinforced by the compiler/TypeScript.
+
+Type Narrowing is a TypeScript process that refines a value of multiple types into a single, specific type.
+is when TypeScript can infer more specific types based on the variable’s surrounding code.
+
+Type guards
+************
+
+One way that TypeScript can narrow a type is with a conditional statement that checks if a variable is a specific type.
+This pattern is called a type guard. Type guards can use a variety of operators that check for a variable’s type. One operator we can use is typeof.
+
+In a nutshell, an expression that checks if a variable is a specific type is called a type guard.
+
+function formatDate(date: string | number) {
+  // date can be a number or string here
+
+  if (typeof date === 'string') { 
+    // date must be a string type
+  }
+}
+
+Using in with Type Guards
+**************************
+
+While using typeof can get us pretty far, sometimes we want to see if a specific method exists on a type instead of a type like 'string'.
+That’s where the in operator comes into play. The in operator checks if a property exists on an object itself or anywhere within its prototype chain.
+TypeScript recognizes in as a type guard.
+
+Narrowing with else
+********************
+
+TypeScript can recognize the else block of an if/else statement as being the opposite type guard check of the if statement’s type guard check. For example:
+
+function formatPadding(padding: string | number) {
+  if (typeof padding === 'string') {
+    return padding.toLowerCase();
+  } else {
+    return `${padding}px`;
+  }
+}
+
+Narrowing After a Type Guard
+*****************************
+
+TypeScript’s ability to infer types after a type guard stretches even further than inferring the type within an else statement. TypeScript can also type narrow without an else statement, provided that there’s a return statement within the type guard. Take a look at this example:
+
+type Tea = {
+  steep: () => string;
+}
+
+type Coffee = {
+  pourOver: () => string;
+} 
+
+function brew(beverage: Coffee | Tea) {
+  if ('steep' in beverage) {
+    return beverage.steep();
+  }
+
+  return beverage.pourOver();
+}
