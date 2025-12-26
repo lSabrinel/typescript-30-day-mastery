@@ -272,8 +272,9 @@ Union Types
 Defining Unions
 *****************
 
-Unions: Docs Some values can have more than one possible type. TypeScript represents these either-or types using a union.
-allow us to define multiple allowed type members by separating each type member with a vertical line character 
+Unions: Some values can have more than one possible type. TypeScript represents these either-or types using a union.
+allow us to define multiple allowed type members by separating each type member with a vertical line character.
+Each type in a union is called a type member.
 
 let ID: string | number;
 
@@ -327,3 +328,15 @@ const batteryStatus: boolean | number = false;
 
 batteryStatus.toString(); // No TypeScript error
 batteryStatus.toFixed(2); // TypeScript error
+
+Unions with Literal Types
+**************************
+
+This technique allows us to write functions that are specific about the states they can handle,
+which helps us write code that’s less prone to errors.
+
+Example: type Color = 'green' | 'yellow' | 'red';
+
+function changeLight(color: Color) {
+  // ...
+}
