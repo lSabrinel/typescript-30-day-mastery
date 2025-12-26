@@ -304,3 +304,16 @@ TypeScript is able to infer types in many cases so that we don’t have to manua
 A great example is a function’s return type.
 TypeScript will look at the contents of a function and infer which types the function can return. 
 If there are multiple possible return types, TypeScript will infer the return type as a union.
+
+Unions and Arrays
+******************
+
+Unions are even more powerful when used in combination with arrays.
+To create a union that supports multiple types for an array’s values, wrap the union in parentheses (string | number), then use array notation [].
+
+const dateNumber = new Date().getTime(); // returns a number
+const dateString = new Date().toString(); // returns a string
+
+const timesList: (string | number)[] = [dateNumber, dateString];
+
+Note: To create a union that supports multiple types for an array’s values, wrap the union in parentheses (string | number), then use array notation [].
