@@ -30,18 +30,15 @@ type annotations == type declarations: let mustBeAString : string;
 "strictNullChecks", variables can only have null or undefined values if they are explicitly assigned those values.
 "include" that determines what files the compiler applies the rules to
 
+# FAQ
 
-*****
-FAQ
-*****
+## Why TypeScript creates .js files instead of running .ts directly?
 
-Why TypeScript creates .js files instead of running .ts directly
-******************************************************************
 1. Because browsers and Node.js only understand JavaScript: TypeScript is not a language that computers or browsers can run directly/ It’s a superset of JavaScript
 2. TypeScript = Development Tool, JavaScript = Execution Code
 
 
-# What is Node.js?
+## What is Node.js?
 
 Node.js is a runtime environment that lets you run JavaScript outside the browser — for example, on your computer or a server.
 Normally, JavaScript runs inside browsers (like Chrome or Firefox) to make web pages interactive.
