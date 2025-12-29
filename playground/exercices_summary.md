@@ -413,3 +413,120 @@ function brew(beverage: Coffee | Tea) {
 
   return beverage.pourOver();
 }
+
+**********************
+Advanced Object Types
+**********************
+
+Interfaces and Types
+**********************
+
+The biggest difference between interface and type is that interface can only be used to type objects, while type can be used to type objects, primitives, and more.
+
+As it turns out, type is more versatile and functional than interface. So why would we use interface?
+
+Sometimes, we don’t want a type that can do everything. We’d like our types to be constrained so we’re more likely to write consistent code. Since interface may only type objects, it’s a perfect match for writing object-oriented programs because these programs need many typed objects. 
+
+Interfaces and Classes
+***********************
+
+The interface keyword in TypeScript is especially good for adding types to a class. Since interface is constrained to typed objects and using class is a way to program with objects, interface and class are a great match.
+
+TypeScript gives us the ability to apply a type to an object/class with the implements keyword, like this:
+
+interface Robot {
+  identify: (id: number) => void;
+}
+
+class OneSeries implements Robot {
+  identify(id: number) {
+    console.log(`beep! I'm ${id.toFixed(2)}.`);
+  }
+
+  answerQuestion() {
+    console.log('42!');
+  }
+}
+
+Deep Types
+***********
+As our programs grow and become more complex, 
+we’ll need to add more methods and properties to our objects to accommodate more features. 
+In fact, we may need to add nested methods and properties. 
+
+interface Robot {
+  about: {
+    general: {
+      id: number;
+      name: string;
+    };
+  };
+  getRobotId: () => string;
+}
+
+Copy to Clipboard
+
+Notice that within the Robot interface, the general typed object is nested inside the about typed object. TypeScript allows us to infinitely nest objects so that we can describe data correctly.
+
+
+Composed Types
+****************
+
+To solve this, TypeScript allows us to compose types.
+We can define multiple types and reference them inside other types. Here’s the type above, rewritten with individual types composed together.
+
+interface About {
+  general: General;
+}
+
+interface General {
+  id: number;
+  name: string;
+  version: Version;
+}
+
+interface Version {
+  versionNumber: number;
+}
+
+Extending Interfaces
+*********************
+
+In TypeScript, it’s not always enough to be able to compose types together. Sometimes it’s convenient to copy all the type members from one type into another type. We can accomplish this with the extends keyword, like in this example:
+
+interface Shape {
+  color: string;
+}
+
+interface Square extends Shape {
+  sideLength: number;
+}
+
+const mySquare: Square = { sideLength: 10, color: 'blue' };
+
+Index Signatures
+*****************
+
+We can define variable property names within an object type with an index signature. 
+An index signature uses syntax like: [propertyName: string]: string.
+
+Optional Type Members
+***********************
+
+ TypeScript allows us to make some type members optional. Take a look at this code:
+
+interface OptionsType {
+  name: string;
+  size?: string;
+}
+
+function listFile(options: OptionsType) {
+  let fileName = options.name;
+
+  if (options.size) {
+    fileName = `${fileName}: ${options.size}`;
+  }
+
+  return fileName;
+}
+
